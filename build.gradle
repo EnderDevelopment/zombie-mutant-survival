@@ -1,0 +1,28 @@
+plugins {
+    id 'fabric-loom' version '1.5-SNAPSHOT'
+}
+
+def mod_version = project.property('mod_version')
+def minecraft_version = project.property('minecraft_version')
+def loader_version = project.property('loader_version')
+def maven_group = project.property('maven_group')
+def archives_base_name = project.property('archives_base_name')
+
+extra {
+    apply plugin: 'fabric-loom'
+    minecraft {
+        version = minecraft_version
+        runs {
+            client {
+                property 'fabric.development', 'true'
+            }
+            server {
+                property 'fabric.development', 'true'
+            }
+        }
+    }
+    loom {
+        version = loader_version
+        accessWidenerPath = file('src/main/resources/accessWidener.txt')
+    }
+}
